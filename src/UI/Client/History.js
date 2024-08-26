@@ -15,7 +15,7 @@ const MedicalHistory = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5020/history/${item_valueid}`);
+            const response = await fetch(`${process.env.REACT_APP_API_GET_HISTORY_URL}/${item_valueid}`);
             if (response.ok) {
                 const data1 = await response.json();
                 if (Array.isArray(data1)) {

@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption } from 'reactstrap';
 
-import bn1 from '../img/index/BANNER-SALUD1.jpg';
-import bn2 from '../img/index/BANNER-SALUD2.jpg';
-import bn3 from '../img/index/BANNER-SALUD3.jpg';
-
 const items = [
-    { src: bn1 },
-    { src: bn2 },
-    { src: bn3 },
+    { src: process.env.REACT_APP_BANNER_1_URL },
+    { src: process.env.REACT_APP_BANNER_2_URL },
+    { src: process.env.REACT_APP_BANNER_3_URL },
 ];
 
 function Usrindex(args) {
@@ -17,7 +13,7 @@ function Usrindex(args) {
     const [images, setImages] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3012/api/images')
+        fetch(process.env.REACT_APP_IMAGES_API_URL)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -25,7 +21,7 @@ function Usrindex(args) {
                 return response.json();
             })
             .then(data => {
-                console.log('Images fetched:', data); 
+                console.log('Images fetched:', data);
                 setImages(data);
             })
             .catch(error => console.error('Error fetching images:', error));
@@ -54,8 +50,8 @@ function Usrindex(args) {
             onExited={() => setAnimating(false)}
             key={item.src}
         >
-            <img src={item.src} alt={item.altText} />
-            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+            <img src={item.src} alt="Carousel Image" />
+            <CarouselCaption captionText="" captionHeader="" />
         </CarouselItem>
     ));
 
@@ -71,11 +67,11 @@ function Usrindex(args) {
             <section className="latest spad">
                 <div className="container">
                     <div className="section-title text-center">
-                        <br></br>
+                        <br />
                         <span className="text-uppercase text-danger">Building a Better Tomorrow</span>
                         <h2 className="text-uppercase">Mission</h2>
                         <p>Our mission is to provide exceptional, compassionate, and comprehensive medical care to all individuals...</p>
-                        <br></br>
+                        <br />
                         <h2 className="text-uppercase">Vision</h2>
                         <p>Our vision is to be a leading healthcare provider recognized for our innovation, excellence in patient care...</p>
                     </div>
@@ -92,7 +88,7 @@ function Usrindex(args) {
                         )}
                     </div>
                 </div>
-                <br></br>
+                <br />
             </section>
         </div>
     );

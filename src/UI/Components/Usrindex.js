@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption } from 'reactstrap';
 
-import room1 from '../img/index/01.jpeg';
-import room2 from '../img/index/02.jpg';
-import room3 from '../img/index/03.jpg';
-import room4 from '../img/index/04.jpg';
-import serv1 from '../img/index/05.jpg';
-import serv3 from '../img/index/06.png';
-import bn1 from '../img/index/BANNER-SALUD1.jpg';
-import bn2 from '../img/index/BANNER-SALUD2.jpg';
-import bn3 from '../img/index/BANNER-SALUD3.jpg';
-
 const items = [
-    { src: bn1 },
-    { src: bn2 },
-    { src: bn3 },
+    { src: process.env.REACT_APP_BANNER_1_URL },
+    { src: process.env.REACT_APP_BANNER_2_URL },
+    { src: process.env.REACT_APP_BANNER_3_URL },
 ];
 
 function Usrindex(args) {
@@ -54,7 +44,7 @@ function Usrindex(args) {
 
     const fetchVideo = async () => {
         try {
-            const videoUrl = 'http://localhost:3004/video';
+            const videoUrl = process.env.REACT_APP_VIDEO_URL;
             setVideoUrl(videoUrl); 
         } catch (error) {
             console.error('Error en fetchVideo:', error.message);
@@ -107,7 +97,14 @@ function Usrindex(args) {
                     <div className="row">
                         <div className="col-lg-8">
                             <div className="instagram__pic d-flex flex-wrap">
-                                {[room1, room2, room3, room4, serv1, serv3].map((img, index) => (
+                                {[
+                                    process.env.REACT_APP_ROOM_1_URL,
+                                    process.env.REACT_APP_ROOM_2_URL,
+                                    process.env.REACT_APP_ROOM_3_URL,
+                                    process.env.REACT_APP_ROOM_4_URL,
+                                    process.env.REACT_APP_SERV_1_URL,
+                                    process.env.REACT_APP_SERV_3_URL
+                                ].map((img, index) => (
                                     <div key={index} className="instagram__pic__item col-lg-4 col-md-4 col-sm-6 p-1">
                                         <img src={img} className="img-fluid" alt="Instagram" />
                                     </div>

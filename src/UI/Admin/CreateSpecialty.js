@@ -4,11 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Admrent = () => {
     const [specialtyName, setSpecialtyName] = useState('');
     const [specialtyDescription, setSpecialtyDescription] = useState('');
-    const apiUrl = 'http://localhost:5004/apinewspecialty';
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); 
-       
+        event.preventDefault();
+
         const data = {
             name: specialtyName,
             description: specialtyDescription
@@ -29,7 +29,6 @@ const Admrent = () => {
                 throw new Error(`HTTP error! Status: ${resp.status}`);
             }
 
-           
             setSpecialtyName('');
             setSpecialtyDescription('');
             alert('Specialty successfully created');

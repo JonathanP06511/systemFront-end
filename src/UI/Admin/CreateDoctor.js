@@ -15,7 +15,7 @@ const Admhalls = () => {
   useEffect(() => {
     const fetchSpecialties = async () => {
       try {
-        const response = await fetch('http://localhost:5005/apigetspecialties');
+        const response = await fetch(process.env.REACT_APP_API_GET_SPECIALTIES);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -32,16 +32,15 @@ const Admhalls = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const verifyUrl = 'http://localhost:4001/apiverify'; 
-      const verify = await fetch(`${verifyUrl}/${email}`);
+      const verifyUrl = `${process.env.REACT_APP_API_VERIFY_INFORMATION}/${email}`;
+      const verify = await fetch(verifyUrl);
       const mess = await verify.json();
 
       if (!verify.ok) {
         alert(mess);
       } else {
         const role = "doctor";
-        const registerUrl = 'http://localhost:5006/apiregister'; 
-        const response = await fetch(registerUrl, {
+        const response = await fetch(process.env.REACT_APP_API_REGISTER_INFORMATION, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -5,9 +5,9 @@ const DocAppointments = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
 
-    const Information = async () => {
+    const fetchInformation = async () => {
         try {
-            const response = await fetch(`http://localhost:5012/apidataappointments`);
+            const response = await fetch(process.env.REACT_APP_API_GET_APPOINTMENTS_URL);
             if (response.ok) {
                 const data1 = await response.json();
                 if (Array.isArray(data1)) {
@@ -33,7 +33,7 @@ const DocAppointments = () => {
     };
 
     useEffect(() => {
-        Information();
+        fetchInformation();
     }, []);
 
     return (

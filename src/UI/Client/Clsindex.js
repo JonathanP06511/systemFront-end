@@ -65,7 +65,7 @@ const Clsindex = () => {
                                             <li id="txt_nom">{data.name + " " + data.lastname}</li>
                                             <li id="txt_correo">{data.mail}</li>
                                             <li id="txt_tipous">{data.role}</li>
-                                            <li><a href="./Recpass"><i className="" aria-hidden="true"></i>Change password</a></li>
+                                        
                                         </ul>
                                     ) : (
                                         <p>No information available.</p>
@@ -94,11 +94,7 @@ const Clsindex = () => {
                                     )}
                                 </div>
                             </div>
-                            <div className="col-lg-4">
-                                <div className="card border-box">
-                                    <h2>Remember</h2>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

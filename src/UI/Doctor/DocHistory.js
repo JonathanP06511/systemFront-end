@@ -10,12 +10,10 @@ const CreateMedicalHistory = () => {
     const [allergies, setAllergies] = useState('');
     const [treatment, setTreatment] = useState('');
 
-    const apiUrl = 'http://localhost:5019/apiregister';
-
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch('http://localhost:5020/apiregister');
+                const response = await fetch(process.env.REACT_APP_API_GET_USERS_URL);
                 if (response.ok) {
                     const data = await response.json();
                     setUsers(data);
@@ -32,9 +30,9 @@ const CreateMedicalHistory = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
+
         const data = {
-            users_id: selectedUserId,  
+            users_id: selectedUserId,
             consultation_date: consultationDate,
             blood_type: bloodType,
             known_diseases: knownDiseases,
@@ -45,19 +43,18 @@ const CreateMedicalHistory = () => {
         console.log('Submitting data:', data);
 
         try {
-            const resp = await fetch(apiUrl, {
+            const response = await fetch(process.env.REACT_APP_API_CREATE_HISTORY_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)  
+                body: JSON.stringify(data)
             });
 
-            if (!resp.ok) {
-                throw new Error(`HTTP error! Status: ${resp.status}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
             }
 
-          
             setSelectedUserId('');
             setConsultationDate('');
             setBloodType('');

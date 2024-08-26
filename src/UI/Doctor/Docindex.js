@@ -10,7 +10,7 @@ const Clsindex = () => {
 
     const Information = async () => {
         try {
-            const response = await fetch(`http://localhost:5011/apidatas/1`);
+            const response = await fetch(`${process.env.REACT_APP_GET_INFORMATION_URL}`);
             console.log(`Response Status: ${response.status}`);
             if (response.ok) {
                 const data1 = await response.json();
@@ -50,26 +50,11 @@ const Clsindex = () => {
                             <div className="col-lg-4">
                                 <div className="cart__total border-box">
                                     <h2>Welcome Doctor</h2>
-                                    {loading ? (
-                                        <p>Loading...</p>
-                                    ) : error ? (
-                                        <p>{error}</p>
-                                    ) : data.length > 0 ? (
-                                        data.map(filname => (
-                                            <ul key={filname.iddoctors}>
-                                                <li id="txt_nom">{filname.name + " " + filname.lastname}</li>
-                                                <li id="txt_correo">{filname.mail}</li>
-                                                <li id="txt_tipous">Type of user: {filname.role}</li>
-                                                
-                                            </ul>
-                                        ))
-                                    ) : (
-                                        <p>No information available.</p>
-                                    )}
+                                    <ul>                                
+                                    </ul>
                                     <button id="btn_close" onClick={Logout} className="site-btn">Log out</button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

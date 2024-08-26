@@ -12,7 +12,7 @@ const Clshalls = () => {
     useEffect(() => {
         const fetchDoctors = async () => {
             try {
-                const response = await fetch('http://localhost:5005/apigetspecialties');
+                const response = await fetch(process.env.REACT_APP_API_GET_SPECIALTIES_URL);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -37,8 +37,7 @@ const Clshalls = () => {
         });
 
         try {
-  
-            const response = await fetch('http://localhost:4018/apireserve', {
+            const response = await fetch(process.env.REACT_APP_API_RESERVE_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -47,7 +46,7 @@ const Clshalls = () => {
                     idclient: item_valueid,
                     date: formattedDate,
                     doctor: selectedDoctor,
-                    reason:reason,
+                    reason: reason,
                 })
             });
 
